@@ -19,14 +19,17 @@ The user may invoke this as `/hello`, optionally passing a name and language:
 ## How to respond
 
 1. Parse the arguments: first token is the name (default `World`), second token is the language code (default `en`).
-2. Run the hello plugin to produce the greeting:
+2. Run the greeting inline — do **not** import from an external file, the logic is self-contained here:
 
 ```bash
 node --input-type=module <<'EOF'
-import { greet } from './plugins/hello/index.js';
-console.log(greet({ name: '$NAME', language: '$LANG' }));
+const greetings = { en: 'Hello', es: 'Hola', fr: 'Bonjour', de: 'Hallo' };
+const g = greetings['$LANG'] ?? greetings.en;
+console.log(`${g}, $NAME!`);
 EOF
 ```
+
+Replace `$NAME` with the actual name argument and `$LANG` with the language code before running.
 
 3. Output the greeting clearly to the user.
 
