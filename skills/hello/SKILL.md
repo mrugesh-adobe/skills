@@ -1,7 +1,9 @@
 ---
 name: hello
 description: Greet a person by name, optionally in a specific language. Use when the user asks to say hello, greet someone, or test the hello plugin. Supports English, Spanish, French, and German.
-tools: Bash
+allowed-tools: Read, Write, Edit, Bash, AskUserQuestion, Skill, Agent
+metadata:
+  version: "1.0.0"
 ---
 
 # Hello Skill
