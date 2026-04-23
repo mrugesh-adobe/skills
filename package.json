@@ -1,0 +1,11 @@
+{
+  "name": "@mrugesh/skills",
+  "version": "1.0.0",
+  "description": "Custom Claude Code skills and reusable plugins",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "plugins/*"
+  ],
+  "license": "Apache-2.0"
+}

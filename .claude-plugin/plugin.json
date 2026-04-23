@@ -1,0 +1,9 @@
+{
+  "name": "mrugesh-skills",
+  "description": "Custom Claude Code skills and reusable plugins by Mrugesh Panchal.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mrugesh Panchal",
+    "email": "mpanchal@adobe.com"
+  }
+}
