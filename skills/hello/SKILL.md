@@ -1,6 +1,7 @@
 ---
 name: hello
 description: Greet a person by name, optionally in a specific language. Use when the user asks to say hello, greet someone, or test the hello plugin. Supports English, Spanish, French, and German.
+compatibility: claude-code
 allowed-tools: Bash
 ---
 
