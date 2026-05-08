@@ -2,45 +2,41 @@
 name: hello
 description: Greet a person by name, optionally in a specific language. Use when the user asks to say hello, greet someone, or test the hello plugin. Supports English, Spanish, French, and German.
 compatibility: claude-code
-allowed-tools: Bash
+allowed-tools: []
 ---
 
 # Hello Skill
 
-Greet the user or a named person using the hello plugin.
+Greet the user or a named person.
 
 ## Usage
-
-The user may invoke this as `/hello`, optionally passing a name and language:
 
 - `/hello` — greet the world in English
 - `/hello Mrugesh` — greet a specific person
 - `/hello Mrugesh es` — greet in Spanish
 
+When consumed from an external project via the mrugesh-skills plugin, invoke as:
+`/mrugesh-skills:hello [name] [lang]`
+
 ## How to respond
 
 1. Parse the arguments: first token is the name (default `World`), second token is the language code (default `en`).
-2. Run the greeting inline — do **not** import from an external file, the logic is self-contained here:
+2. Look up the greeting:
 
-```bash
-node --input-type=module <<'EOF'
-const greetings = { en: 'Hello', es: 'Hola', fr: 'Bonjour', de: 'Hallo' };
-const g = greetings['$LANG'] ?? greetings.en;
-console.log(`${g}, $NAME!`);
-EOF
-```
+| Code | Greeting word |
+|------|---------------|
+| `en` | Hello         |
+| `es` | Hola          |
+| `fr` | Bonjour       |
+| `de` | Hallo         |
 
-Replace `$NAME` with the actual name argument and `$LANG` with the language code before running.
-
-3. Output the greeting clearly to the user.
-
-## Supported languages
-
-| Code | Language |
-|------|----------|
-| `en` | English  |
-| `es` | Spanish  |
-| `fr` | French   |
-| `de` | German   |
+3. Respond with: `<greeting>, <name>!`
 
 If an unsupported language code is given, fall back to English and let the user know.
+
+## Examples
+
+- `/hello` → `Hello, World!`
+- `/hello Mrugesh` → `Hello, Mrugesh!`
+- `/hello Mrugesh es` → `Hola, Mrugesh!`
+- `/hello Mrugesh fr` → `Bonjour, Mrugesh!`

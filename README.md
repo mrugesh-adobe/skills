@@ -12,7 +12,37 @@ Plugins are standalone utilities other projects can import.
 
 ## Skills
 
-Custom skills that extend Claude Code's behaviour for this workspace.
+Custom skills that extend Claude Code's behaviour via the `/hello` slash command.
+
+| Skill | Invoke | Description |
+|-------|--------|-------------|
+| [hello](skills/hello/SKILL.md) | `/hello [name] [lang]` | Greet a person in English, Spanish, French, or German |
+
+## Using this skill in another project
+
+To make these skills available in another Claude Code workspace, add the following to that project's `.claude/settings.json`:
+
+```json
+{
+  "enabledPlugins": ["mrugesh-skills"]
+}
+```
+
+Then register this repo as a plugin source via the CLI (one-time setup):
+
+```sh
+claude plugin add /absolute/path/to/mrugesh-adobe/skills
+```
+
+Once added, invoke the skill as `/mrugesh-skills:hello [name] [lang]` from any workspace that has it enabled.
+
+To use the JS plugin directly in code, import from the package:
+
+```js
+import { greet } from '/absolute/path/to/mrugesh-adobe/skills/plugins/hello/index.js';
+```
+
+Or publish `@mrugesh/plugin-hello` to npm and import it as a regular package.
 
 ## Getting started
 
@@ -30,7 +60,3 @@ console.log(hello('World')); // Hello, World!
 2. Add `index.js`, `package.json`, and `README.md`
 3. Export your public API from `index.js`
 4. List it in this README
-
-## License
-
-Apache 2.0 — see [LICENSE](LICENSE).
